@@ -49,8 +49,8 @@
         </property>
     </bean>
 
-<!--    配置文件上传解析器-->
-    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+<!--    配置文件上传解析器，巨坑必须添加id，否则为null，无法传输-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 <!--        上传文件总大小-->
         <property name="maxUploadSize" value="5242800"/>
 <!--        上传单个文件的大小-->
