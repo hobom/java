@@ -9,4 +9,6 @@ public interface UserService {
 
     List<User> list();
     void save(User user, Long[] roleIds);
+
+    User login(String username, String password);
 }

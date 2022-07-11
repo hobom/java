@@ -2,6 +2,7 @@ package com.itheima.dao.impl;
 
 import com.itheima.dao.UserDao;
 import com.itheima.domain.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -18,6 +19,16 @@ public class UserDaoImpl implements UserDao {
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public User findByUsernameAndPassWord(String username, String password) throws EmptyResultDataAccessException {
+        User user = jdbcTemplate.queryForObject(
+                "select * from sys_user where username=? and password=?",
+                new BeanPropertyRowMapper<User>(User.class),
+                username,
+                password);
+        return user;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.itheima.domain.Role;
 import com.itheima.domain.User;
 import com.itheima.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
@@ -51,5 +52,15 @@ public class UserServiceImpl implements UserService {
         System.out.println(userId);
         //第二部 向sys_user_role关系表中存储多条数据
         userDao.saveUserRoleRel(userId,roleIds);
+    }
+
+    @Override
+    public User login(String username, String password) {
+        try {
+            User user=userDao.findByUsernameAndPassWord(username,password);
+            return user;
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }

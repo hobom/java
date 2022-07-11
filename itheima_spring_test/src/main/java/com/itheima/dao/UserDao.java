@@ -5,6 +5,7 @@ import com.itheima.domain.User;
 import java.util.List;
 
 public interface UserDao {
+    User findByUsernameAndPassWord(String username, String password);
     List<User> findAll();
 
     Long save(User user);
