@@ -1,7 +1,9 @@
-package com.itheima.aop;
+package com.itheima.anno;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
+@Component("target")
 public class Target implements TargetInterface {
     @Override
     public void save() {
